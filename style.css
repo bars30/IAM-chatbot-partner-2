@@ -265,6 +265,11 @@ p, b, span {
  color: var(--header-footer);
  transition: background-color var(--transition-default), color var(--transition-default);
 }
+.chatbox-footer-btn span {
+  display: inline-block;
+  margin-right: 4px;
+  color: white;
+}
 .chatbox-footer-btn-questions {
   background: linear-gradient(90deg, #367AF3, var(--brand-blue));
 }
@@ -531,7 +536,7 @@ hr {
   color: white;
 }
 .new-bot-message {
-  min-height: 75.5%;
+  min-height: 76.5%;
   /* min-height: calc(95dvh - 240px); */
   /* font-size: calc(100dvh - 240px); */
       margin-bottom: 5px;
@@ -664,19 +669,53 @@ a {
   } */
        .new-bot-message {
         /* min-height: 64dvh !important; */
-        min-height: calc(89dvh - 185px);
+        min-height: 82.5%;
     }
+    .message {
+    margin-bottom: 8px;
+}
     .chatbox-footer-btn img {
     margin-right: 0;
     display: none;
 }
+
+button.chatbox-footer-btn.chatbox-footer-btn-questions {
+    padding: 0;
+}
+.chatbox-footer-btn-questions.visible{
+  padding: 9px 12px;
+        font-size: 12px;
+        height: fit-content;
+}
+
+
+/* .chatbox-footer {
+    display: flex
+;
+    justify-content: space-between;
+    padding-top: 8px;
+    flex-direction: column-reverse;
+    gap: 8px;
+}
+.gen-btn {
+    justify-content: end;
+} */
+.footer .clear-btn {
+    display: none;
+}
+.logo-header {
+    display: none;
+}
+    .chatbox-footer-btn-questions.visible {
+        margin: 0 6px;
+    }
 .chatbox-footer-btn {
     padding: 9px 12px;
     font-size: 12px;
     height: fit-content;
 }
 .chatbox-footer-btn-questions.visible {
-    padding: 9px 12px;
+    padding: 9px 12px !important;
 }
   .quick-prompts-header {
     font-size: 20px;
@@ -797,3 +836,12 @@ input:checked + .slider .moon-icon {
 input:checked + .slider .sun-icon {
   opacity: 1;
 }
+@media only screen and (max-width: 380px){
+  .chatbox-footer-btn span {
+    display: none;
+  }
+
+}
+
+
+
