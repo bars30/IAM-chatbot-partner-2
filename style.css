@@ -95,10 +95,6 @@ body {
     padding-bottom: 12px;
     background-color: var(--header-footer);
     border-radius: 12px;
-    position: absolute;
-    bottom: 2.5dvh;
-    left: 21.5%;
-    right: 21.5%;
 }
 #file-preview-container {
   margin-top: 5px;
@@ -118,6 +114,14 @@ body {
     margin-bottom: 8px;
     justify-content: space-between;
 }
+.message .file-preview {
+  margin-bottom: 0;
+}
+.user-message:has(.file-preview) {
+  border-radius: 12px;
+  padding: 1px;
+}
+
 .file-header {
     display: flex;
     gap: 6px;
@@ -504,6 +508,7 @@ hr {
   transition: all 0.4s ease;
   /* padding: 12px; */
   padding-bottom: 45px;
+  /* margin-bottom: 60px; */
 }
 .chatbox-messages::-webkit-scrollbar {
   display: none; /* Chrome, Safari and Opera */
@@ -526,7 +531,7 @@ hr {
   color: white;
 }
 .new-bot-message {
-  min-height: 80.5%;
+  min-height: 75.5%;
   /* min-height: calc(95dvh - 240px); */
   /* font-size: calc(100dvh - 240px); */
       margin-bottom: 5px;

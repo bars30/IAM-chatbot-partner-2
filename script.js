@@ -601,24 +601,35 @@ let chatState = "waitingUserQuestion";
 const chatboxInput = document.getElementById("chatbox-input");
 const sendBtn = document.querySelector(".chatbox-send-btn");
 
-function addMessage(text, sender = "bot", animated = false, callback) {
+function addMessage(text, sender = "bot", animated = false, callback, file = false) {
   const msgDiv = document.createElement("div");
   msgDiv.className = `message ${sender}-message`;
 
+  if (file) {
+    console.log("📂 File mode enabled");
+    console.log(text);
+    msgDiv.innerHTML = text;
+    chatboxMessages.appendChild(msgDiv);
+
+    msgDiv.scrollIntoView({ behavior: "smooth", block: "start" });
+    saveChatHistory();
+    return msgDiv; // ✅ return, որ մնացած կոդը չաշխատի
+  }
+
+  // 👇 սա կաշխատի միայն եթե file === false
   const p = document.createElement("p");
   msgDiv.appendChild(p);
   chatboxMessages.appendChild(msgDiv);
 
-  const isSimpleText = !/<[^>]+>/.test(text); // ստուգում է արդյոք կա՞ HTML
+  const isSimpleText = !/<[^>]+>/.test(text);
 
   if (animated && !isSimpleText) {
-    // Եթե անիմացիա է պետք և HTML կա
     typeTextHTML(p, text, 20, () => {
       msgDiv.scrollIntoView({ behavior: "smooth", block: "start" });
       if (callback) callback();
     });
   } else {
-    p.innerHTML = text; // ուղղակի տեղադրի առանց անիմացիայի
+    p.innerHTML = text;
     msgDiv.scrollIntoView({ behavior: "smooth", block: "start" });
     if (callback) callback();
   }
@@ -720,7 +731,7 @@ sendBtn.addEventListener("click", () => {
       `;
     });
 
-    addMessage(filesHTML, "user"); // ֆայլերը կավելանան որպես user-message
+    addMessage(filesHTML, "user",  false, null, true); // ֆայլերը կավելանան որպես user-message
     selectedFiles = [];            // մաքրում ենք զանգվածը
     updatePreview();               // մաքրում ենք file-preview-container-ը
     updateFileList();              // reset անում ենք input.files
