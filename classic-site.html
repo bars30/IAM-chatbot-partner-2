@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Classic IAM Site</title>
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="./font/montserrat/stylesheet.css" />
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    .navbar {
+      background-color: var(--bg-language-switch);
+      padding: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      border-bottom: 1px solid var(--border-color);
+      width: 20%;
+    height: 100dvh;
+    justify-content: start;
+    flex-direction: column;
+    background-color: var(--bg-page);
+    }
+    .navbar a {
+      padding: 6px 10px;
+      font-size: 14px;
+      color: var(--text-dark);
+      background-color: white;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      text-decoration: none;
+      display: block;
+    height: fit-content;
+    
+    }
+    .navbar a:hover {
+      background-color: var(--brand-blue);
+      color: white;
+    }
+    section {
+          padding: 40px 20px 25px 20px;
+      border-bottom: 1px solid var(--border-color);
+    }
+    .chatbar {
+      background-color: var(--bg-chatbox);
+      padding: 20px;
+      border-top: 2px solid var(--border-color);
+      text-align: center;
+    }
+    .chatbar input, .chatbar textarea {
+      display: block;
+      width: 100%;
+      max-width: 500px;
+      margin: 10px auto;
+      padding: 8px;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+    }
+    .chatbar button {
+      background-color: var(--brand-blue);
+      color: white;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .chatbar button:hover {
+      background-color: #0073e6;
+    }
+    .general-container {
+    display: flex;
+  }
+  .scroll {
+    width: 77%;
+}
+.navbar {
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 20%;
+  height: 100vh;
+  overflow-y: auto;
+  background-color: var(--bg-page);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-left: 1px solid var(--border-color);
+  z-index: 100;
+}
+
+.scroll {
+  width: 80%;
+  height: 100vh;
+  overflow-y: scroll;
+  padding: 0 20px 0 4%;
+  scroll-behavior: smooth;
+}
+h2 {
+    margin-bottom: 16px;
+}
+p {
+    margin-bottom: 8px;
+}
+img.section-img {
+    margin: 15px 0;
+}
+li {
+    margin: 12px 0;
+}
+ @media (max-width: 1024px) {
+      .general-container {
+        flex-direction: column;
+      }
+
+      .navbar {
+        position: relative;
+        width: 100%;
+        height: auto;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 12px 10px;
+        border-left: none;
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      .scroll {
+        width: 100%;
+        height: auto;
+        overflow: visible;
+        padding: 0 10px;
+      }
+
+      .team-member {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .team-member-img {
+        width: 100px;
+      }
+    }
+    .hamburger {
+  display: none;
+  position: fixed;
+  top: 24px;
+  right: 20px;
+  width: 35px;
+  height: 28px;
+  z-index: 200;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+}
+.hamburger span {
+  display: block;
+  height: 4px;
+  background-color: var(--text-dark);
+  border-radius: 2px;
+  transition: 0.3s;
+}
+.navbar.mobile-hidden {
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+}
+.navbar.mobile-visible {
+  transform: translateX(0%);
+}
+@media (max-width: 1024px) {
+  .toolbar img {
+    width: 29%;
+    display: block;
+    margin: 4px 0 0 20px;
+}
+  .hamburger {
+    display: flex;
+  }
+  section#why {
+    padding-top: 55px;
+}
+  .navbar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 100%;
+    background-color: var(--bg-page);
+    z-index: 150;
+    padding: 20px;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+    box-shadow: -4px 0 10px rgba(0, 0, 0, 0.1);
+    justify-content: flex-start;
+            flex-direction: column;
+            padding-top: 15px;
+  }
+  .navbar a {
+    padding: 12px;
+    font-size: 16px;
+    width: 80%;
+  }
+  .scroll {
+    width: 100%;
+    height: auto;
+    overflow: visible;
+    padding: 0 10px;
+  }
+  .toolbar img {
+    width: 33%;
+    display: block !important;
+    margin: 8px 0 0 20px;
+    display: block;
+}
+.logo {
+  display: none;
+}
+
+  
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(12px, 8px);
+}
+.toolbar img {
+    display: none;
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+img.logo {
+    width: 18%;
+    margin-bottom: 15px;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(8px, -5px);
+}
+
+.hamburger span {
+  display: block;
+  height: 4px;
+  width: 100%;
+  background-color: var(--text-dark);
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+
+  </style>
+</head>
+<body>
+  <div class="toolbar">
+    <img src="./img/logo.png" alt="">
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+  </div>
+  <div class="general-container">
+    <div class="navbar">
+    <a href="#why">Why Companies Choose Us</a>
+    <a href="#services">Services for Clients</a>
+    <a href="#hiring">Hiring Process</a>
+    <a href="#tech">Technological Expertise & Roles</a>
+    <a href="#network">IAM Talent Network</a>
+    <a href="#story">Story & Purpose</a>
+    <a href="#team">Team</a>
+    <a href="#pros">For IAM Professionals</a>
+    <a href="#contact">Contact</a>
+    <a href="#consult">Career Consultation</a>
+    <a href="#jobs">Current IAM Job Openings</a>
+  </div>
+  
+<spline-viewer url="https://prod.spline.design/ppuX1REsxBL-6gr6/scene.splinecode" />
+
+ <div class="scroll">
+  <spline-viewer url="https://prod.spline.design/ppuX1REsxBL-6gr6/scene.splinecode" />
+
+  <section id="why">
+    <img src="./img/logo.png"  class="logo" alt="">
+    <h2>Why Companies Choose Us</h2>
+    <!-- Content injected here --> 
+     <div class="cont">
+      <p><b>Seeking Top IAM Talent?</b> We streamline your hiring by delivering pre-vetted experts in <b>Okta, Azure AD, SailPoint, CyberArk,</b> and more. Discover precision talent that fits your exact needs.</p>
+        
+         <ul>
+          <li><b>Deep IAM Specialization:</b> We're not generalists. Our exclusive focus on <b>IAM, PAM, IGA, CIAM, and MIM</b> means we speak your language, understanding complex needs from <b>Zero Trust</b> to <b>DevSecOps with Identity focus.</b></li>
+          <li><b>High-Caliber, Vetted Experts:</b> We connect you with experienced <b>IAM Engineers, Architects, and Consultants</b> who thrive in <b>ISO 27001 / SOC 2</b> environments. Our talent is rigorously vetted for technical prowess and cultural fit.</li>
+          <li><b>Your Strategic Talent Partner:</b> For <b>CISOs, Heads of IAM, and HR/TA Partners,</b> we're a trusted extension of your team. We quickly deliver IAM-literate candidates, anticipating triggers like new projects (MFA, SSO) or audits, saving you time and effort.</li>
+          <li><b>Targeted Market Access:</b> Specializing in Germany's <b>Banking, Tech, Manufacturing, and Pharma</b> sectors, our reach extends across <b>DACH</b> and key <b>EU</b> markets, sourcing both German and English-speaking professionals.</li>
+          </ul>
+        
+          <p><b>Ready to Secure Your Digital Future with the Right IAM Talent? Find Your Next IAM Expert Now.</b></p>
+        <img src="./img/sect01.png" class="section-img" alt="">
+     </div>
+  </section>
+
+  <section id="services">
+    <h2>Services for Clients</h2>
+    <!-- Content injected here -->
+     <div class="cont">
+      <p><b>Our Specialized IAM & Cybersecurity Recruitment Services</b></p>
+
+<p>Partner with <b>IAM Hiring</b> to overcome your IAM talent challenges. We offer flexible and effective recruitment solutions designed to meet your precise requirements, whether you're expanding your internal IAM team or scaling consulting teams selling IAM services.</p>
+
+<p><b>Our Core Talent Solutions:</b></p>
+
+<ul>
+  <li><b>Permanent Placement (Direct Hire):</b> Securing long-term IAM and Cybersecurity talent is crucial for sustained growth and compliance. We specialize in identifying, attracting, and placing permanent professionals who will integrate seamlessly into your team and strengthen your security posture.
+    <ul>
+      <li><b>Contingency Search:</b> Our "no win, no fee" model for standard-to-mid-level IAM roles. You only pay upon successful placement, reducing risk for HR/TA Partners.</li>
+      <li><b>Retained Search:</b> A dedicated, prioritized search for critical or highly specialized positions, such as IAM Architects, DevSecOps with Identity focus, or IAM Project Managers. This offers exclusive focus, in-depth market mapping, and a guaranteed commitment to finding the ideal candidate within a defined timeframe, addressing CISOs' concerns about long time-to-fill.</li>
+      <li><b>Executive Search:</b> For C-level and senior leadership positions (e.g., Chief Identity Officer, VP of IAM Strategy). We employ a discrete and meticulous approach to identify leaders who will shape your organization's security future, particularly for enterprises undergoing significant IAM modernization or Zero Trust rollouts.</li>
+    </ul>
+  </li>
+
+  <li><b>Contract / Interim IAM Staffing:</b> Need specialized IAM expertise for a specific project, to cover a temporary absence, or to scale up quickly for new initiatives like MFA/SSO deployments? Our network includes highly skilled IAM contractors and interim managers ready to hit the ground running.
+    <ul>
+      <li>Flexible engagement models to suit project lifecycles.</li>
+      <li>Rapid deployment of pre-vetted professionals, crucial for urgent demands from Hiring Managers.</li>
+      <li>Access to niche skills for short-to-medium term requirements, especially for PAM or CIAM projects.</li>
+      <li>Dedicated account management, ensuring HR/TA Partners receive a true specialist who delivers without wasting time.</li>
+    </ul>
+  </li>
+</ul>
+
+  <img src="./img/sect04.png" class="section-img" alt="">
+
+     </div>
+  </section>
+
+  <section id="hiring">
+    <h2>Hiring Process</h2>
+    <!-- Content injected here -->
+     
+<p>Our process is designed to overcome talent shortages and ensure a fast, efficient path to the right hire. We address <b>CISOs'</b> goals of reduced risk and <b>IAM Team Leads'</b> needs for strong, reliable teams.</p>
+
+<ol>
+  <li><b>In-depth Needs Assessment & Strategy Definition:</b> We begin with a thorough consultation to understand your specific IAM role requirements, company culture, existing tech stack (e.g., CyberArk, ForgeRock, Saviynt), and strategic security roadmap (e.g., Zero Trust). We align on your Hiring Need (2–10 roles/year) and craft a customized search strategy.</li>
+  
+  <li><b>Targeted Sourcing & Identification of IAM Experts:</b> Leveraging our extensive network across Germany, DACH, and Europe, proprietary database, and advanced active sourcing techniques, we identify passive and active IAM professionals who precisely match your criteria. We prioritize candidates with experience in environments like yours (e.g., ISO 27001, SOC 2).</li>
+  
+  <li><b>Rigorous Vetting & Specialized Qualification:</b> Every candidate undergoes a detailed interview by our team, including hard-skills screening, soft skills assessment, and cultural fit evaluation. We only present candidates who meet our high standards, addressing Hiring Managers' challenges of finding candidates with deep, specialized experience.</li>
+  
+  <li><b>Presentation of Top Candidates & Interview Coordination:</b> We provide you with a shortlist of highly qualified candidates, complete with detailed profiles and our expert assessment. We manage all interview scheduling, feedback collection, and logistical arrangements, ensuring HR/TA Partners save time and focus on decision-making.</li>
+  
+  <li><b>Offer Management & Post-Placement Support:</b> We facilitate offer negotiations, ensuring a smooth and successful acceptance. Our support extends to post-placement follow-ups, ensuring successful integration and satisfaction for both client and candidate, reducing CISOs' concerns about team attrition.</li>
+</ol>
+<img src="./img/sect05.png" class="section-img" alt="">
+  </section>
+
+  <section id="tech">
+    <h2>Technological Expertise & Roles</h2>
+    <!-- Content injected here -->
+     <p>Our network comprises professionals skilled in a wide array of industry-leading IAM and related security solutions, ensuring we can match your precise technology requirements:</p>
+
+<p><b>Key IAM & Cybersecurity Roles We Place</b><br>
+Our expertise spans the critical positions driving your Identity and Access Management and Cybersecurity initiatives:</p>
+
+<ul>
+  <li>IAM Engineers / Architects</li>
+  <li>Identity Governance & Administration (IGA) Experts</li>
+  <li>Privileged Access Management (PAM) Specialists</li>
+  <li>Machine Identity & Secrets Management (MIAM) Experts</li>
+  <li>Customer Identity & Access Management (CIAM) Specialists</li>
+  <li>IAM Project Managers & Leads</li>
+  <li>DevSecOps with Identity focus</li>
+  <li>IAM Sales Consultants / Presales Engineers</li>
+  <li>IAM Analysts / Administrators</li>
+  <li>IAM Consultants (Advisory, Implementation, Integration)</li>
+  <li>Cloud IAM Architects (e.g., AWS IAM, Google Cloud IAM)</li>
+  <li>IAM Operations Specialist</li>
+  <li>Head of IAM / IAM Practice Leader / Head of Infrastructure / Head of Security</li>
+  <li>Other Specialized IAM Positions</li>
+</ul>
+
+<p><b>Core IAM Platforms:</b></p>
+<ul>
+  <li>Microsoft Entra ID (formerly Azure Active Directory)</li>
+  <li>Okta Workforce Identity Cloud</li>
+  <li>Ping Identity</li>
+  <li>ForgeRock Identity Platform</li>
+  <li>IBM Security Verify</li>
+  <li>Oracle Identity Management</li>
+  <li>OneLogin</li>
+  <li>JumpCloud</li>
+  <li>Duo Security (Cisco Duo)</li>
+  <li>RSA SecurID</li>
+</ul>
+
+<p><b>Identity Governance & Administration (IGA) Platforms:</b></p>
+<ul>
+  <li>SailPoint Identity Security Cloud</li>
+  <li>Saviynt Enterprise Identity Cloud</li>
+  <li>Omada Identity Platform</li>
+  <li>tenfold</li>
+  <li>OneIdentity</li>
+</ul>
+
+<p><b>Privileged Access Management (PAM) Platforms:</b></p>
+<ul>
+  <li>CyberArk Privileged Access Manager</li>
+  <li>BeyondTrust Privileged Access Management</li>
+  <li>Delinea (formerly Thycotic & Centrify)</li>
+  <li>Wallix Bastion</li>
+  <li>StrongDM</li>
+</ul>
+
+<p><b>MIAM / Secrets Management Platforms:</b></p>
+<ul>
+  <li>HashiCorp Vault</li>
+  <li>Venafi</li>
+  <li>AWS IAM</li>
+  <li>Google Cloud IAM</li>
+</ul>
+
+<p><b>Customer Identity & Access Management (CIAM) Platforms:</b></p>
+<ul>
+  <li>Okta Customer Identity Cloud (formerly Auth0)</li>
+  <li>LoginRadius</li>
+  <li>FusionAuth</li>
+</ul>
+
+<p><b>Additional Protocols & Standards Expertise:</b><br>
+OAuth, OpenID Connect, SAML, SCIM, LDAP, Kerberos.</p>
+
+<p><b>DevSecOps Tooling Expertise:</b><br>
+Kubernetes Identity, API Security, CI/CD pipeline security.</p>
+<img src="./img/sect06.png" class="section-img" alt="">
+  </section>
+
+  <section id="network">
+    <h2>IAM Talent Network</h2>
+    <!-- Content injected here -->
+     <p>At <b>IAM Hiring</b>, we don't just search for candidates; we connect you with a pre-existing, meticulously curated community of the most sought-after <b>Identity and Access Management (IAM) experts in Europe.</b></p>
+        
+        <p>Our vast network comprises <b>over 8,000 highly skilled IAM professionals</b>, with approximately <b>5,000 top talents located right here in Germany</b>. What truly sets us apart is the depth of our relationships: we've personally engaged with <b>every single one of these experts</b>, whether through in-depth online interviews, face-to-face meetings at industry conferences, or during dedicated meetups.</p>
+        <p>This personal connection means we don't just know their skills; we understand their career aspirations, their ideal work environment, and exactly <b>what opportunity will be truly attractive for them to make a job change</b>. When you partner with us, you're not waiting for a search to begin; we likely <b>already know the ideal candidate you're looking for</b>, enabling faster, more precise placements that genuinely last.</p>
+        <img src="./img/sect02.png" class="section-img" alt="">
+  </section>
+
+  <section id="story">
+    <h2>Story & Purpose</h2>
+    <!-- Content injected here -->
+     <div class="cont">
+      <p><b>Our Mission:</b> At <b>IAM Hiring</b>, we empower German and European businesses by providing them with expert <b>Identity & Access Management (IAM)</b> and <b>Cybersecurity</b> talent. We specialize in filling crucial roles to strengthen your security posture in today's complex digital landscape.</p>
+
+<p><b>Our Vision:</b> To be the leading and most trusted specialized IAM recruitment partner in Germany and across <b>DACH/EU</b>. We're recognized for our deep industry knowledge, precision matching, and the profound positive impact we have on both client security and candidate careers.</p>
+
+<p><b>Our Story:</b> <b>IAM Hiring</b> is a niche recruitment firm exclusively dedicated to the IAM sector. Founded by managers with multiple years of <b>IT and Cybersecurity recruitment</b> experience in Germany, our passion was to fill a critical market gap. We observed that companies struggled to find truly specialized IAM professionals, often missed by generalist recruiters.</p>
+
+<p>We built <b>IAM Hiring</b> as a direct response, focusing solely on this complex domain. We understand that robust <b>IAM</b> is a critical foundation, not just a technology. Our deep specialization provides unparalleled market intelligence and direct access to a network of highly sought-after IAM professionals. We are the trusted, specialized firm that both top talents and hiring managers prefer.</p>
+<img src="./img/sect03.png" class="section-img" alt="">
+     </div>
+  </section>
+
+  <section id="team">
+    <h2>Team</h2>
+    <!-- Content injected here -->
+     <div class="cont">
+        <article class="team-member">
+          <img class="team-member-img" src="./img/team01.png" alt="">
+    <div class="article-cont">
+    <p><b>Katja Olkhovaia</b></p>
+    <p>
+      With 16 years of experience in IT Recruitment and a network of over 27,000 IT experts, Katja brings unparalleled insight into the industry. </p> 
+      <p>She leads our strategic client partnerships, ensuring we deliver on the specific needs of CISOs and Heads of IAM.
+    </p>
+    <p><b>Email:</b> <a href="mailto:katja@iamhiring.de">katja@iamhiring.de</a></p>
+    <p><b>Teams:</b> <a href="https://getwhitelisted.de/katja" target="_blank" rel="noopener noreferrer">https://getwhitelisted.de/katja</a></p>
+    </div>
+  </article>
+<article class="team-member">
+  <img class="team-member-img" src="./img/team02.png" alt="">
+  <div class="article-cont">
+    <p><b>Darius Starks</b></p>
+    <p>
+      11 years of recruitment experience. Focusing on recruiting IAM and Security professionals since 2017, Darius has developed a passion for the security community and the joy of connecting the right security experts together.
+    </p>
+    <p><b>Email:</b> <a href="mailto:darius@iamhiring.de">darius@iamhiring.de</a></p>
+  </div>
+</article>
+
+<article class="team-member">
+  <img class="team-member-img" src="./img/team03.png" alt="">
+  <div class="article-cont">
+    <p><b>Vladyslav Kartyshov</b></p>
+    <p>
+      Vladyslav brings over 5 years of experience in IT-Security recruitment with a specialized focus on Information Security (ISMS, GRC, ISO 27001, BSI IT-Grundschutz) and Cyber Security (SIEM, SOC, Network Security and Ethical Hacking). Supported by a strong network of proven IT-Security professionals, he delivers deep industry insights and precise talent solutions.
+    </p>
+    <p><b>Email:</b> <a href="mailto:vladislav@iamhiring.de">vladislav@iamhiring.de</a></p>
+  </div>
+</article>
+     </div>
+  </section>
+
+  <section id="pros">
+    <h2>For IAM Professionals</h2>
+    <!-- Content injected here -->
+     <div class="cont">
+        <p><b>For IAM Professionals: Your Next Career Move Starts Here</b></p>
+
+  <p>
+    As a leading specialized IAM and Cybersecurity recruiter in Germany and DACH, we're dedicated to connecting top talent like you with rewarding career opportunities at innovative companies. Let us help you navigate your next career move, whether you're an IAM Engineer, Architect, or PAM Specialist.
+  </p>
+
+  <p><b>Why Partner With IAM Hiring?</b><br>
+    We're trusted by top talents who seek meaningful career progression, not just another job. We understand your expertise in Okta, SailPoint, CyberArk, and Azure AD, and we match you with roles that truly fit.
+  </p>
+
+  <ul>
+    <li>
+      <b>Exclusive Access to Top Roles:</b> We partner with leading German and DACH companies (Banking, Tech, Manufacturing, etc.), often on exclusive IAM, PAM, IGA, CIAM, and MIM positions that are not publicly advertised. Gain access to roles perfectly suited to your specialized skills in ISO 27001-compliant environments.
+    </li>
+    <li>
+      <b>Deep IAM Industry Insight & Guidance:</b> Our team understands the nuances of the IAM market, specific technologies, and relevant career paths for DevSecOps with Identity focus or IAM Sales Consultants. We provide informed guidance, salary benchmarking, and insights into current market trends.
+    </li>
+    <li>
+      <b>Personalized Career Journey:</b> We take the time to understand your career aspirations, strengths, and desired work environment, whether you're looking for an IAM Project Manager role or an IAM Architect challenge. We're committed to finding not just a job, but the right long-term career move for you.
+    </li>
+    <li>
+      <b>Streamlined, Expert-Led Process:</b> From resume optimization and interview preparation (we'll help you highlight your CyberArk or SailPoint expertise!) to offer negotiation and onboarding support, we guide you every step of the way, making your job search efficient and stress-free.
+    </li>
+    <li>
+      <b>Confidentiality & Professionalism:</b> Your privacy is paramount. We handle your job search with the utmost discretion and professionalism, understanding the sensitive nature of Cybersecurity careers.
+    </li>
+  </ul>
+
+  <p><b>Ready for Your Next IAM Career Step?</b><br>
+  <a href="#contact">Send Us Your CV</a> | <a href="#consultation">Request a Career Consultation</a>
+  </p>
+  <img src="./img/sect07.png" class="section-img" alt="">
+
+     </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <!-- Content injected here -->
+     <div class="cont">
+      <p>
+    Ready to find your next IAM expert for your Banking, Tech, or Manufacturing enterprise, or looking for your next career opportunity in IAM/Cybersecurity? Get in touch with our specialized team today.
+  </p>
+
+  <p><b>Send Us a Message in the Chat:</b></p>
+  <ul>
+    <li>Your Name:</li>
+    <li>Your Email:</li>
+    <li>Phone (Optional):</li>
+    <li>Your Message:</li>
+  </ul>
+
+  <p><b>Or Reach Us Directly:</b></p>
+  <ul>
+    <li><strong>Phone:</strong> +49 30 70016612</li>
+    <li><strong>Email:</strong> <a href="mailto:info@iamhiring.de">info@iamhiring.de</a></li>
+    <li><strong>Office Address:</strong> Ziegelstraße 16, 10117 Berlin, Germany</li>
+    <li><strong>Business Hours:</strong> Monday - Friday: 9:00 AM - 6:00 PM (CET)</li>
+  </ul>
+
+  <p><b>Connect With Us:</b></p>
+  <p>
+    <a href="https://www.linkedin.com/company/107770925/admin/dashboard/" target="_blank" rel="noopener noreferrer">LinkedIn Company Page</a>
+  </p>
+     </div>
+  </section>
+
+  <section id="consult">
+    <h2>Career Consultation</h2>
+    <!-- Content injected here -->
+     <div class="cont">
+      <p><b>Ready to strategically plan your next career move in Identity & Access Management?</b> Our experienced team at IAM Hiring is here to consult with you.</p>
+        <p>We offer personalized career guidance, insights into the latest IAM market trends in Germany and DACH, and expert advice on optimizing your job search. Whether you're looking for market intelligence, interview preparation tips, or a clear path for your professional growth, we're dedicated to helping you achieve your aspirations.</p>
+        <p>Book your confidential career consultation by clicking the link below:</p>
+        <p><a href="https://outlook.office.com/book/IAMhiring@starks-consulting.de/?ismsaljsauthenabled" target="_blank" rel="noopener noreferrer">Schedule Career Consultation</a></p>
+     </div>
+  </section>
+
+  <section id="jobs">
+    <h2>Current IAM Job Openings</h2>
+    <!-- Content injected here -->
+     <div class="cont">
+      <p><b>Ready for Your Next IAM Career Step?</b></p>
+    <p>Jobs, jobs, jobs</p>
+    <p><a href="#send-cv">Send Us Your CV</a> | <a href="#career-consultation">Request a Career Consultation</a></p>
+    <hr>
+    <p><b>Send Us Your CV</b></p>
+    <p>Happy that you're ready for your next career step in IAM! We're here to help you find the perfect match.</p>
+    <p>To get started, please attach your CV and all other relevant files (such as certificates, Zeugnisse, or project portfolios) using the upload feature below.</p>
+    <p>Please share in chat details about what you're looking for so we can tailor our search effectively:</p>
+    <ul>
+      <li>What kind of IAM or Cybersecurity roles are you interested in? (e.g., Senior IAM Engineer, Cloud IAM Architect, PAM Consultant, DevSecOps with Identity focus)</li>
+      <li>What are your preferred locations? (e.g., Berlin, Munich, Frankfurt, DACH region, remote, hybrid)</li>
+      <li>What are your salary expectations? (e.g., Annual gross salary range)</li>
+      <li>Are there any other specific job requirements or preferences you have? (e.g., industry focus, company size, specific tech stack you want to work with, team culture, work-life balance needs)</li>
+    </ul>
+    <p>We look forward to reviewing your profile and helping you advance your career!</p>
+     </div>
+  </section>
+
+  <div class="chatbar">
+    <h3>Please write us your Name, Message, Email or Phone</h3>
+    <input type="text" placeholder="Your Name">
+    <input type="email" placeholder="Your Email">
+    <input type="text" placeholder="Phone (optional)">
+    <textarea rows="3" placeholder="Message..."></textarea>
+    <button>Send</button>
+  </div>
+ </div>
+  </div>
+  <script>
+const hamburger = document.getElementById('hamburger');
+const navbar = document.querySelector('.navbar');
+
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  navbar.classList.toggle('mobile-visible');
+  navbar.classList.toggle('mobile-hidden');
+});
+
+const links = navbar.querySelectorAll('a');
+links.forEach(link => {
+  link.addEventListener('click', () => {
+    if (window.innerWidth <= 1024) {
+      navbar.classList.remove('mobile-visible');
+      navbar.classList.add('mobile-hidden');
+      hamburger.classList.remove('active');
+    }
+  });
+});
+
+window.addEventListener('load', () => {
+  if (window.innerWidth <= 1024) {
+    navbar.classList.add('mobile-hidden');
+  }
+});
+
+</script>
+
+</body>
+</html>
