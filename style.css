@@ -240,6 +240,7 @@ p, b, span {
     height: 100%;
     align-items: center;
     justify-content: center;
+    
 }
 
 .chatbox-messages {
@@ -499,7 +500,8 @@ hr {
     margin-bottom: 16px;
 }
 .chatbox-messages {
-  flex: 1;
+  /* flex: 1; */
+  height: 90% !important;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
@@ -623,6 +625,25 @@ a {
 .fade-out {
   animation: slideDownToBottom 0.3s ease forwards;
 }
+
+@media only screen and (max-width: 1224px){
+.chatbox-container {
+    width: 72%;
+}
+footer p {
+    width: 55%;
+}
+
+.quick-prompts-footer { 
+  width: 71.9%;
+}
+.footer-btn-cont {
+    justify-content: center !important;
+    flex-direction: column;
+    gap: 4px;
+    align-items: center;
+}
+}
 @media only screen and (max-width: 1024px){
      #chatbox-container {
         width: 95%;
@@ -631,14 +652,9 @@ a {
         width: 94.9% !important;
     }
 
-}
-@media only screen and (max-width: 1224px){
-.chatbox-container {
-    width: 72%;
-}
-.quick-prompts-footer { 
-  width: 71.9%;
-}
+  footer p {
+    width: 68%;
+  }
 }
 @media only screen and (max-width: 768px){
   .btn-cont {
@@ -650,7 +666,18 @@ a {
   .logo-header-subtitle {
     display: none;
   }
-
+.footer-btn-cont {
+    flex-direction: row !important;
+    width: 100% !important;
+    justify-content: left !important;
+}
+  footer {
+    flex-direction: column;
+    gap: 8px;
+  }
+footer p {
+    width: 100% !important;
+}
   .chatbox-container {
     height: 97vh;
   }
@@ -737,6 +764,9 @@ button.chatbox-footer-btn.chatbox-footer-btn-questions {
   }
   img.section-img {
     width: 100%;
+  }
+  button.footer-btn {
+    margin: 0 12px 0 0;
   }
 }
 
@@ -845,6 +875,32 @@ input:checked + .slider .sun-icon {
   }
 
 }
+footer {
+    background-color: var(--button-shadow);
+    padding: 12px 2.5%;
+    display: flex;
+    justify-content: space-between;
+}
+footer p {
+  width: 75%;
+}
+.footer-btn {
+    background-color: transparent;
+    border: none;
+    margin-left: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: end;
+}
+.footer-btn p {
+  text-decoration: underline;
+}
+.footer-btn-cont {
+    width: 16.5%;
+    display: flex;
+    justify-content: end;
+}
 
-
-
+footer p {
+    font-size: 14px;
+}

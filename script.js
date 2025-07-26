@@ -441,27 +441,36 @@ Kubernetes Identity, API Security, CI/CD pipeline security.</p>
         <p><a href="https://outlook.office.com/book/IAMhiring@starks-consulting.de/?ismsaljsauthenabled" target="_blank" rel="noopener noreferrer">Schedule Career Consultation</a></p>
      <div class="space"></div>
         `;
-      case "Current IAM Job Openings":
-  return `
-    <p><b>Ready for Your Next IAM Career Step?</b></p>
-    <p>Jobs, jobs, jobs</p>
-    <p><a href="#send-cv">Send Us Your CV</a> | <a href="#career-consultation">Request a Career Consultation</a></p>
-    <hr>
-    <p><b>Send Us Your CV</b></p>
-    <p>Happy that you're ready for your next career step in IAM! We're here to help you find the perfect match.</p>
-    <p>To get started, please attach your CV and all other relevant files (such as certificates, Zeugnisse, or project portfolios) using the upload feature below.</p>
-    <p>Please share in chat details about what you're looking for so we can tailor our search effectively:</p>
-    <ul>
-      <li>What kind of IAM or Cybersecurity roles are you interested in? (e.g., Senior IAM Engineer, Cloud IAM Architect, PAM Consultant, DevSecOps with Identity focus)</li>
-      <li>What are your preferred locations? (e.g., Berlin, Munich, Frankfurt, DACH region, remote, hybrid)</li>
-      <li>What are your salary expectations? (e.g., Annual gross salary range)</li>
-      <li>Are there any other specific job requirements or preferences you have? (e.g., industry focus, company size, specific tech stack you want to work with, team culture, work-life balance needs)</li>
-    </ul>
-    <p>We look forward to reviewing your profile and helping you advance your career!</p>
-     <div class="space"></div>
-  `;
-
+  case "Send Us Your CV":
+      return `
+        <h3>Happy that you're ready for your next career step in IAM! We're here to help you find the perfect match.</h3>
+      <p>To get started, please attach your CV and all other relevant files (such as certificates, Zeugnisse, or project portfolios) using the upload feature below.</p>
+      <p>Please share in chat details about what you're looking for so we can tailor our search effectively:</p>  
       
+<ul>
+  <li>
+    <b>What kind of IAM or Cybersecurity roles are you interested in? </b>
+    (e.g., Senior IAM Engineer, Cloud IAM Architect, PAM Consultant, DevSecOps with Identity focus)
+  </li>
+    <li>
+    <b>What are your preferred locations? </b>
+    (e.g., Berlin, Munich, Frankfurt, DACH region, remote, hybrid)
+  </li>
+    <li>
+    <b>What are your salary expectations? </b>
+    (e.g., Annual gross salary range)
+  </li>
+    <li>
+    <b>Are there any other specific job requirements or preferences you have? </b>
+    (e.g., industry focus, company size, specific tech stack you want to work with, team culture, work-life balance needs)
+  </li>
+</ul>
+<p>We look forward to reviewing your profile and helping you advance your career!</p>
+
+
+      <div class="space"></div>
+        `;
+
       default:
         return `Thanks for your interest in "${prompt}". Let me tell you more...`;
     }
@@ -470,6 +479,7 @@ Kubernetes Identity, API Security, CI/CD pipeline security.</p>
   promptButtons.forEach((btn) => {
     btn.addEventListener("click", () => {
       const selectedPrompt = btn.textContent;
+console.log("🙅🏻🙅🏻🙅🏻🙅🏻🙅🏻🙅🏻");
 
       promptButtons.forEach(b => b.disabled = true);
       promptsSection.classList.add("fade-out");
@@ -497,7 +507,7 @@ Kubernetes Identity, API Security, CI/CD pipeline security.</p>
   
   if (firstMessage && !!localStorage.getItem('chatHistory')) {
     setTimeout(() => {
-          userMsg.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          chatboxMessages.scrollTop = chatboxMessages.scrollHeight;
         }, 50); 
         console.log("ssssssss");
         
@@ -508,7 +518,7 @@ Kubernetes Identity, API Security, CI/CD pipeline security.</p>
   }
   else {
     setTimeout(() => {
-          userMsg.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          chatboxMessages.scrollTop = chatboxMessages.scrollHeight;
         }, 50); 
   }
 
@@ -611,7 +621,8 @@ function addMessage(text, sender = "bot", animated = false, callback, file = fal
     msgDiv.innerHTML = text;
     chatboxMessages.appendChild(msgDiv);
 
-    msgDiv.scrollIntoView({ behavior: "smooth", block: "start" });
+    // chatboxMessages.scrollTop = chatboxMessages.scrollHeight;
+
     saveChatHistory();
     return msgDiv; // ✅ return, որ մնացած կոդը չաշխատի
   }
@@ -625,12 +636,14 @@ function addMessage(text, sender = "bot", animated = false, callback, file = fal
 
   if (animated && !isSimpleText) {
     typeTextHTML(p, text, 20, () => {
-      msgDiv.scrollIntoView({ behavior: "smooth", block: "start" });
+      // chatboxMessages.scrollTop = chatboxMessages.scrollHeight;
+
       if (callback) callback();
     });
   } else {
     p.innerHTML = text;
-    msgDiv.scrollIntoView({ behavior: "smooth", block: "start" });
+    // chatboxMessages.scrollTop = chatboxMessages.scrollHeight;
+
     if (callback) callback();
   }
 
@@ -653,45 +666,7 @@ function saveChatHistory() {
   localStorage.setItem("chatHistory", JSON.stringify(chatData));
 }
 
-// sendBtn.addEventListener("click", () => {
-//   const userInput = chatboxInput.value.trim();
-//   if (!userInput) return;
 
-//   promptsSection.classList.add("fade-out");
-//   promptsSection.classList.add("fade-out-display-none");
-//   questionsBtn.classList.add("visible");
-
-//   addMessage(userInput, "user");
-
-//   chatboxInput.value = "";
-//   chatboxInput.style.height = "auto";
-
-  
-
-//   if (chatState === "waitingUserQuestion") {
-//     const fullResponse = `
-//       <p>Thank you for your message!</p>
-//       <p>To assist you better, please share your <b>full name</b> and <b>email address</b>.</p>
-//       <p>Unfortunately, I can't answer this question directly, but one of our consultants will reach out to you shortly.</p>
-//     `;
-//     // addMessage(fullResponse, "bot");
-//     const newBotEl = addMessage(fullResponse, "bot");
-
-
-// newBotEl.classList.add("new-bot-message");
-// chatboxMessages.scrollTop = chatboxMessages.scrollHeight;
-
-
-// chatState = "done";
-//     // chatState = "done";
-    
-
-
-//   } else if (chatState === "done") {
-
-//     addMessage("We've already received your info. Our consultant will contact you soon.", "bot");
-//   }
-// });
 
 const clearBtns = document.querySelectorAll('.chatbox-footer-btn.clear-btn');
 
@@ -760,6 +735,8 @@ const element = document.querySelector('.new-bot-message');
 
 newBotEl.classList.add("new-bot-message");
 chatboxMessages.scrollTop = chatboxMessages.scrollHeight;
+
+console.log(chatboxMessages);
 
 
 chatState = "done";
