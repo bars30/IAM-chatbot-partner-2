@@ -693,11 +693,14 @@ function saveChatHistory() {
 //   }
 // });
 
-const clearBtn = document.querySelector('.chatbox-footer-btn.clear-btn');
+const clearBtns = document.querySelectorAll('.chatbox-footer-btn.clear-btn');
 
-clearBtn.addEventListener('click', () => {
-  localStorage.removeItem('chatHistory');
-  location.reload();
+clearBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    
+    localStorage.removeItem('chatHistory');
+    location.reload();
+  });
 });
 
 sendBtn.addEventListener("click", () => {
