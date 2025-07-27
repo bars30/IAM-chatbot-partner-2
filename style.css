@@ -27,6 +27,17 @@
 
  --button-radius: 8px;
  --transition-default: 0.3s ease-in-out;
+
+ --12px: 0.75rem;
+ --14px: 0.875rem;
+ --15px: 0.9375rem;
+ --16px: 1rem;
+ --18px: 1.125rem;
+ --20px: 1.25rem;
+ --24px: 1.5rem;
+ --28px: 1.75rem;
+ --32px: 2rem;
+ --40px: 2.5rem;
 }
 body.dark-mode {
   --bg-page: #19212E;
@@ -44,7 +55,9 @@ body.dark-mode {
 body {
   transition: all 0.2s ease-in-out;
 }
-
+p {
+  font-size: var(--16px);
+}
 .container {
  background-color: var(--bg-page);
  height: 100vh;
@@ -110,7 +123,7 @@ body {
     background: var(--bg-page);
     padding: 6px;
     border-radius: 10px;
-    font-size: 14px;
+    font-size: var(--14px);
     margin-bottom: 8px;
     justify-content: space-between;
 }
@@ -158,13 +171,13 @@ background: none;
 
 .logo-header-title {
  font-weight: 500;
- font-size: 18px;
+ font-size: var(--18px);
  color: var(--text-dark);
      text-align: center;
 }
 .logo-header-subtitle {
  color: var(--text-subtitle);
- font-size: 12px;
+ font-size: var(--12px);
 }
 .logo-header {
     display: flex;
@@ -176,6 +189,7 @@ background: none;
   overflow: hidden;
   display: flex;
   flex-direction: column;
+      position: relative;
 }
 
 
@@ -184,7 +198,7 @@ p, b, span {
 }
 .quick-prompts-header {
  font-weight: 500;
- font-size: 28px;
+ font-size: var(--28px);
  width: 58%;
  text-align: center;
  color: var(--text-dark);
@@ -197,7 +211,7 @@ p, b, span {
 }
 .quick-prompts-subtitle {
     font-weight: 400;
-    font-size: 14px;
+    font-size: var(--14px);
     color: var(--text-dark);
 }
 .title {
@@ -206,7 +220,7 @@ p, b, span {
 }
 .quick-prompts-btn {
  color: var(--prompt-text);
- font-size: 14px;
+ font-size: var(--14px);
  background-color: var(--header-footer);
      /* background: linear-gradient(26deg, #a3c4ff, #d6e4ff); */
  /* border: 1px solid var(--border-color); */
@@ -240,7 +254,10 @@ p, b, span {
     height: 100%;
     align-items: center;
     justify-content: center;
-    
+    position: absolute;
+    top: 0;
+    bottom: 17%;
+    z-index: 155;
 }
 
 .chatbox-messages {
@@ -260,7 +277,7 @@ p, b, span {
  border-radius: 12px;
  border: none;
  padding: 6px 12px;
- font-size: 14px;
+ font-size: var(--14px);
  cursor: pointer;
  font-weight: 500;
  color: var(--header-footer);
@@ -425,22 +442,20 @@ article.team-member {
     margin-top: 2px;
 }
 .text p {
-    font-size: 15px;
+    font-size: var(--15px);
 }
 .contact {
-    font-size: 14px;
+    font-size: var(--14px);
 }
 .contact p {
   margin-bottom: 0!important;
 }
-.article-cont span {
-  /* display: none; */
-}
+
 .article-cont h3 span {
     font-weight: 500;
 }
 .article-cont h4 span {
-    font-size: 14px;
+    font-size: var(--14px);
     font-weight: 400;
 }
 img.section-img {
@@ -451,7 +466,7 @@ img.section-img {
 }
 .message h2 {
     font-weight: 500;
-    font-size: 19px;
+    font-size: var(--20px);
     margin: 8px 0 8px;
 }
 hr {
@@ -661,7 +676,7 @@ footer p {
     min-width: 41% !important;
   }
   .logo-header-title {
-    font-size: 16px;
+    font-size: var(--16px);
   }
   .logo-header-subtitle {
     display: none;
@@ -711,22 +726,10 @@ button.chatbox-footer-btn.chatbox-footer-btn-questions {
 }
 .chatbox-footer-btn-questions.visible{
   padding: 9px 12px;
-        font-size: 12px;
+        font-size: var(--12px);
         height: fit-content;
 }
 
-
-/* .chatbox-footer {
-    display: flex
-;
-    justify-content: space-between;
-    padding-top: 8px;
-    flex-direction: column-reverse;
-    gap: 8px;
-}
-.gen-btn {
-    justify-content: end;
-} */
 .footer .clear-btn {
     display: none;
 }
@@ -738,20 +741,20 @@ button.chatbox-footer-btn.chatbox-footer-btn-questions {
     }
 .chatbox-footer-btn {
     padding: 9px 12px;
-    font-size: 12px;
+    font-size: var(--12px);
     height: fit-content;
 }
 .chatbox-footer-btn-questions.visible {
     padding: 9px 12px !important;
 }
   .quick-prompts-header {
-    font-size: 20px;
+  font-size: var(--20px);
   }
   .quick-prompts-cont {
     width: 100% !important;
   }
   .quick-prompts-btn {
-    font-size: 12px !important;
+    font-size: var(--12px) !important;
   }
   article.team-member {
     display: block;
@@ -775,7 +778,7 @@ button.chatbox-footer-btn.chatbox-footer-btn-questions {
   
 h2.logo-header-title {
     width: 150px;
-    font-size: 14px;
+    font-size: var(--14px);
 }
 .chatbox-footer-btn-questions {
     margin: 0 2px;
@@ -902,5 +905,5 @@ footer p {
 }
 
 footer p {
-    font-size: 14px;
+    font-size: var(--14px);
 }
