@@ -9,20 +9,49 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const langButtons = document.querySelectorAll('.lang-option');
 
-langButtons.forEach(button => {
-  button.addEventListener('click', () => {
-    console.log("🎁🎁🎁🎁🎁");
-    
-    langButtons.forEach(btn => btn.classList.remove('active'));
-    button.classList.add('active');
-    const selectedLang = button.dataset.lang;
-    console.log(selectedLang);
+  langButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      console.log("🎁🎁🎁🎁🎁");
+      
+      langButtons.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+      const selectedLang = button.dataset.lang;
+      console.log(selectedLang);
+    });
   });
-});
 
 let firstMessage = true;
-let currentLang = "en";
+let currentLang = localStorage.getItem("lang") || "en";
+if (localStorage.getItem("lang")) {
+  console.log( localStorage.getItem("lang"));
+  const l =localStorage.getItem("lang");
+console.log(4);
 
+  console.log(langButtons);
+  langButtons.forEach(btn => btn.classList.remove('active'));
+  langButtons.forEach(button => {
+  
+      console.log("🎁🎁🎁🎁🎁");
+      
+      
+      // button.classList.add('active');
+      // const selectedLang = button.dataset.lang;
+      // console.log(selectedLang);
+      console.log(button.dataset.lang);
+      if (button.dataset.lang == l) {
+        button.classList.add('active');
+        console.log("🎁🎁🎁🎁🎁");
+        
+      } else {
+        console.log(45);
+        
+      }
+  setTimeout(() => {
+    updateUIText();
+  }, 100);
+});
+
+}
 console.log("🥶🥶🥶🥶🥶🥶", currentLang);
 
 
@@ -61,6 +90,7 @@ const reversePromptTranslations = Object.fromEntries(
 
 function updateUIText() {
   const texts = currentLang === "de" ? deTexts : enTexts;
+
 
   // Title
   document.title = texts.siteTitle;
