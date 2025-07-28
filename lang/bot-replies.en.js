@@ -242,7 +242,7 @@ export const botEnReplies = {
     <h4>Or Reach Us Directly:</h4>
     <ul>
       <li><strong>Phone:</strong> +49 30 70016612</li>
-      <li><strong>Email:</strong> <a href="mailto:info@iamhiring.de">team@iamhiring.de</a></li>
+      <li><strong>Email:</strong> <a href="mailto:team@iamhiring.de">team@iamhiring.de</a></li>
       <li><strong>Office Address:</strong> Ziegelstraße 16, 10117 Berlin, Germany</li>
       <li><strong>Business Hours:</strong> Monday - Friday: 9:00 AM - 6:00 PM (CET)</li>
     </ul>
