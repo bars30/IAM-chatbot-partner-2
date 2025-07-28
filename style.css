@@ -69,7 +69,6 @@ p {
  display: inline-flex;
  padding: 4px;
  border-radius: 20px;
- /* border: 1px solid var(--border-color); */
  height: fit-content;
 }
 .lang-option {
@@ -91,11 +90,8 @@ p {
 .chatbox-container {
  width: 57%;
  margin: auto;
- /* background-color: var(--bg-chatbox); */
  border-radius: 20px;
  overflow: hidden;
- /* border: 1px solid var(--border-color); */
- /* padding: 12px 0; */
  height: 95vh;
   display: flex;
   flex-direction: column;
@@ -155,7 +151,6 @@ background: none;
  justify-content: space-between;
  align-items: center;
  padding: 12px;
- /* border-bottom: 1px solid var(--border-color); */
  background-color: var(--header-footer);
  border-radius: 34px !important;
 }
@@ -227,8 +222,6 @@ h3 {
  color: var(--prompt-text);
  font-size: var(--14px);
  background-color: var(--header-footer);
-     /* background: linear-gradient(26deg, #a3c4ff, #d6e4ff); */
- /* border: 1px solid var(--border-color); */
  padding: 4px 8px;
  border-radius: 8px;
  width: fit-content;
@@ -259,10 +252,6 @@ h3 {
     height: 100%;
     align-items: center;
     justify-content: center;
-    /* position: absolute;
-    top: 0;
-    bottom: 18%;
-    z-index: 155; */
 }
 .chatbox-messages.display {
     height: 0% !important;
@@ -474,7 +463,7 @@ img.section-img {
     display: block;
     margin: 16px 0 8px 0;
 }
-.message h2 {
+.message h2, h2 {
     font-weight: 500;
     font-size: var(--20px);
     margin: 8px 0 8px;
@@ -515,8 +504,8 @@ hr {
 .user-message p {
   color: white !important;
   width: 100%;
-   white-space: pre-wrap;       /* պահպանում է line-break-երը */
-  overflow-wrap: anywhere;     /* կոտրում է ցանկացած տեղում */
+   white-space: pre-wrap;     
+  overflow-wrap: anywhere;  
 }
 .message:first-child {
     margin-top: 16px;
@@ -525,25 +514,21 @@ hr {
     margin-bottom: 16px;
 }
 .chatbox-messages {
-  /* flex: 1; */
   height: 90% !important;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  /* justify-content: flex-end; */
   
   position: relative;
   scroll-behavior: smooth;
   overflow-x: hidden;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
   transition: all 0.4s ease;
-  /* padding: 12px; */
   padding-bottom: 45px;
-  /* margin-bottom: 60px; */
 }
 .chatbox-messages::-webkit-scrollbar {
-  display: none; /* Chrome, Safari and Opera */
+  display: none; 
 }
 .chatbox-footer-btn:disabled,
 .chatbox-footer-btn-questions:disabled {
@@ -563,9 +548,8 @@ hr {
   color: white;
 }
 .new-bot-message {
-  min-height: 76.5%;
-  /* min-height: calc(95dvh - 240px); */
-  /* font-size: calc(100dvh - 240px); */
+  min-height: 78.5%;
+
       margin-bottom: 5px;
       height: max-content;
 }
@@ -603,9 +587,7 @@ position: absolute;
 a {
     color: var(--brand-blue);
 }
-/* .spacer {
-  margin-top: auto;
-} */
+
 .fade-in {
   opacity: 1;
   transform: translateY(0);
@@ -618,7 +600,7 @@ a {
 @keyframes slideUpFromBottom {
   0% {
     opacity: 0;
-    transform: translateY(10px); /* Ցածից վերև */
+    transform: translateY(10px);
   }
   100% {
     opacity: 1;
@@ -663,7 +645,7 @@ footer p {
     justify-content: center !important;
     flex-direction: column;
     gap: 4px;
-    align-items: center;
+            align-items: end;
 }
 }
 @media only screen and (max-width: 1024px){
@@ -691,6 +673,9 @@ footer p {
     width: 100% !important;
     justify-content: left !important;
 }
+.footer-btn {
+    margin: 0 12px 0 0;
+}
   footer {
     flex-direction: column;
     gap: 8px;
@@ -704,18 +689,8 @@ footer p {
   .quick-prompts-footer {
     bottom: 75px;
   }
-  /* .chat {
-    height: 82vh;
-  } */
-   /* .chat {
-  height: calc(100vh - 115px) !important;
-} */
-
-  /* .new-bot-message {
-    min-height: 54dvh !important;
-  } */
        .new-bot-message {
-        /* min-height: 64dvh !important; */
+
         min-height: 82.5%;
     }
     .message {
@@ -890,7 +865,7 @@ footer {
     justify-content: space-between;
 }
 footer p {
-  width: 75%;
+  width: 70%;
 }
 .footer-btn {
     background-color: transparent;
@@ -899,12 +874,14 @@ footer p {
     cursor: pointer;
     display: flex;
     align-items: end;
+    color: white;
+        font-size: 14px;
 }
 .footer-btn p {
   text-decoration: underline;
 }
 .footer-btn-cont {
-    width: 16.5%;
+    width: 20%;
     display: flex;
     justify-content: end;
 }

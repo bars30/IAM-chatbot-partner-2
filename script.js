@@ -11,60 +11,39 @@ document.addEventListener("DOMContentLoaded", () => {
 
   langButtons.forEach(button => {
     button.addEventListener('click', () => {
-      console.log("🎁🎁🎁🎁🎁");
-      
       langButtons.forEach(btn => btn.classList.remove('active'));
       button.classList.add('active');
       const selectedLang = button.dataset.lang;
-      console.log(selectedLang);
     });
   });
 
 let firstMessage = true;
 let currentLang = localStorage.getItem("lang") || "en";
 if (localStorage.getItem("lang")) {
-  console.log( localStorage.getItem("lang"));
   const l =localStorage.getItem("lang");
-console.log(4);
-
-  console.log(langButtons);
   langButtons.forEach(btn => btn.classList.remove('active'));
   langButtons.forEach(button => {
   
-      console.log("🎁🎁🎁🎁🎁");
-      
-      
-      // button.classList.add('active');
-      // const selectedLang = button.dataset.lang;
-      // console.log(selectedLang);
-      console.log(button.dataset.lang);
+
       if (button.dataset.lang == l) {
         button.classList.add('active');
-        console.log("🎁🎁🎁🎁🎁");
-        
-      } else {
-        console.log(45);
-        
-      }
+      } 
   setTimeout(() => {
     updateUIText();
   }, 100);
 });
 
 }
-console.log("🥶🥶🥶🥶🥶🥶", currentLang);
+
 
 
   document.querySelectorAll(".lang-option").forEach(button => {
     button.addEventListener("click", () => {
-      console.log("🔥🔥🔥🔥🔥");
-      
       const lang = button.getAttribute("data-lang");
       currentLang = lang;
       localStorage.setItem("lang", lang);
     
       updateUIText();
-      // clearChat();
     });
   });
 
@@ -91,25 +70,16 @@ const reversePromptTranslations = Object.fromEntries(
 function updateUIText() {
   const texts = currentLang === "de" ? deTexts : enTexts;
 
-
-  // Title
   document.title = texts.siteTitle;
 
-  // Header block
   document.querySelector(".logo-header-title").textContent = texts.siteTitle;
   document.querySelector(".logo-header-subtitle").textContent = texts.siteSubtitle;
 
-  // Chat greeting block
   document.querySelector(".quick-prompts-header").innerHTML = texts.greetingHeader;
   document.querySelector(".quick-prompts-subtitle").textContent = texts.greetingSub;
 
-  // Input placeholder
   document.querySelector("#chatbox-input").placeholder = texts.placeholder;
 
-
-
-
-  // Footer buttons (Clear, Classic, Questions)
   document.querySelectorAll(".clear-btn").forEach(btn => {
     btn.textContent = texts.buttons.clear;
   });
@@ -117,11 +87,10 @@ function updateUIText() {
   document.querySelector(".chatbox-footer-btn-questions").textContent = texts.buttons.questions;
   document.querySelector(".chatbox-footer-btn[onclick]").querySelector("span").textContent = texts.buttons.questions;
 
-  // Footer legal text
   document.querySelector("footer p").textContent = texts.footer.copyright;
 
-  // Footer legal buttons
-  const footerBtns = document.querySelectorAll(".footer-btn p");
+  const footerBtns = document.querySelectorAll(".footer-btn-cont a");
+  
   if (footerBtns.length >= 2) {
     footerBtns[0].textContent = texts.footer.imprint;
     footerBtns[1].textContent = texts.footer.privacy;
@@ -131,16 +100,13 @@ const menuButtons = document.querySelectorAll(".quick-prompts-btn");
 menuButtons.forEach((btn) => {
   const currentText = btn.textContent.trim();
 
-  // 👇 Ստուգում ենք `prompt`-ը ըստ լեզվի՝ և՛ EN, և՛ DE ուղղությամբ
   const prompt = 
     currentLang === "de" 
       ? Object.keys(promptTranslations).find(key => promptTranslations[key] === currentText) || currentText
       : reversePromptTranslations[currentText] || currentText;
 
-  // ✅ Ստեղծում ենք data-prompt (EN քի)
   btn.dataset.prompt = prompt;
 
-  // ✅ UI-ում դնում ենք համապատասխան լեզվով ցուցադրվող տեքստ
   if (currentLang === "de" && promptTranslations[prompt]) {
     btn.textContent = promptTranslations[prompt];
   }
@@ -164,12 +130,8 @@ menuButtons.forEach((btn) => {
 
 
   if (promptsSection.classList.contains("fade-out")) {
-  console.log("Ունի fade-out class");
   chatboxMessages.classList.remove("display");
 } else {
-  console.log("Չունի fade-out class");
-  console.log(localStorage.getItem('chatHistory'), 1);
-  console.log(!!localStorage.getItem('chatHistory'));
   if (!!localStorage.getItem('chatHistory')) {
     chatboxMessages.classList.remove("display");
   } else {
@@ -208,7 +170,7 @@ function restoreChatHistory() {
 
 chatboxMessages.style.scrollBehavior = "auto";
 chatboxMessages.scrollTop = chatboxMessages.scrollHeight;
-chatboxMessages.style.scrollBehavior = ""; // reset to default (smooth) եթե պետք լինի հետո
+chatboxMessages.style.scrollBehavior = ""; 
 
   }
 }
@@ -248,21 +210,16 @@ function typeTextHTML(container, html, delay = 20, callback) {
     const node = nodes[currentIndex];
     
     if (node.nodeType === Node.TEXT_NODE) {
-      console.log("spaaaaaaaaaaaaaaaaaaaaan");
       
       const span = document.createElement("span");
       container.appendChild(span);
-console.log(span, "🦋");
+
 
       typeText(span, node.textContent, delay, () => {
         currentIndex++;
         typeNextNode();
-        console.log(span, "🦋");
-        console.log(!span.textContent.trim(), "🔥");
         if (!span.textContent.trim()) {
-    span.remove(); // ջնջում ենք DOM-ից
-  } else {
-    console.log(span, "🫣🫣🫣🫣");
+    span.remove();
   }
       });
 
@@ -270,7 +227,6 @@ console.log(span, "🦋");
       const clone = node.cloneNode(false); 
       container.appendChild(clone);
 
-      // 🧼 Մաքրում ենք node.innerHTML-ից դատարկ span-ները
       let childHTML = node.innerHTML;
 
       const temp = document.createElement("div");
@@ -309,7 +265,7 @@ function getBotReply(prompt) {
   promptButtons.forEach((btn) => {
     btn.addEventListener("click", () => {
       const selectedPrompt = btn.textContent;
-console.log("🙅🏻🙅🏻🙅🏻🙅🏻🙅🏻🙅🏻");
+
 chatboxMessages.classList.remove("display");
       promptButtons.forEach(b => b.disabled = true);
       promptsSection.classList.add("fade-out");
@@ -330,31 +286,21 @@ chatboxMessages.classList.remove("display");
         userMsg.appendChild(userP);
         chatboxMessages.appendChild(userMsg);
         saveChatHistory();
-  console.log("🔥", localStorage.getItem('chatHistory'));
 
-  console.log("🔥🦋", localStorage.getItem('chatHistory'));
-  console.log("✅✅✅✅✅✅✅✅", !localStorage.getItem('chatHistory'));
   
   if (firstMessage && !!localStorage.getItem('chatHistory')) {
     setTimeout(() => {
           chatboxMessages.scrollTop = chatboxMessages.scrollHeight;
         }, 50); 
-        console.log("ssssssss");
+
         
     
-  } else if (firstMessage && !localStorage.getItem('chatHistory')) {
-    console.log(1);
-    
-  }
+  } 
   else {
     setTimeout(() => {
           chatboxMessages.scrollTop = chatboxMessages.scrollHeight;
         }, 50); 
   }
-
-        // setTimeout(() => {
-        //   userMsg.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        // }, 50); 
 
         const botMsg = document.createElement("div");
         botMsg.className = "message bot-message";
@@ -362,29 +308,21 @@ chatboxMessages.classList.remove("display");
         botMsg.appendChild(botP);
         chatboxMessages.appendChild(botMsg);
         saveChatHistory();
-  console.log("2🔥", localStorage.getItem('chatHistory'));
 
 
 
         if (firstMessage) {
-          console.log('first message');
           firstMessage = false;
           botMsg.classList.add("new-bot-message");
         } else {
-          console.log("🎀🎀🎀🎀🎀🎀🎀🎀🎀");
-          
           const element = document.querySelector('.new-bot-message');
           if (element) {
             element.classList.remove("new-bot-message");
           }
-          console.log('not first message');
           botMsg.classList.add("new-bot-message");
         }
 
       saveChatHistory();
-  console.log("🔥33", localStorage.getItem('chatHistory'));
-console.log("botp", botP);
-console.log(getBotReply(selectedPrompt));
 
 questionsBtn.disabled = true;
 langButtons.forEach(b => b.disabled = true);
@@ -451,18 +389,13 @@ function addMessage(text, sender = "bot", animated = false, callback, file = fal
   msgDiv.className = `message ${sender}-message`;
 
   if (file) {
-    console.log("📂 File mode enabled");
-    console.log(text);
     msgDiv.innerHTML = text;
     chatboxMessages.appendChild(msgDiv);
 
-    // chatboxMessages.scrollTop = chatboxMessages.scrollHeight;
-
     saveChatHistory();
-    return msgDiv; // ✅ return, որ մնացած կոդը չաշխատի
+    return msgDiv; 
   }
 
-  // 👇 սա կաշխատի միայն եթե file === false
   const p = document.createElement("p");
   msgDiv.appendChild(p);
   chatboxMessages.appendChild(msgDiv);
@@ -471,14 +404,10 @@ function addMessage(text, sender = "bot", animated = false, callback, file = fal
 
   if (animated && !isSimpleText) {
     typeTextHTML(p, text, 20, () => {
-      // chatboxMessages.scrollTop = chatboxMessages.scrollHeight;
-
       if (callback) callback();
     });
   } else {
     p.innerHTML = text;
-    // chatboxMessages.scrollTop = chatboxMessages.scrollHeight;
-
     if (callback) callback();
   }
 
@@ -521,15 +450,13 @@ sendBtn.addEventListener("click", () => {
   promptsSection.classList.add("fade-out-display-none");
   questionsBtn.classList.add("visible");
 
-  
-  // 1️⃣ Ավելացնում ենք user-ի տեքստը, եթե կա
+  chatboxMessages.classList.remove("display");
+
   if (userInput) {
-    console.log("🎀🎀🎀🎀🎀🎀🎀🎀🎀");
-    console.log("🎀🎀🎀🎀🎀🎀🎀🎀🎀", userInput);
-    
     addMessage(userInput, "user");
   }
-// 2️⃣ Եթե ֆայլեր կան՝ ավելացնում ենք նաև ֆայլերի preview-ը
+
+
   if (selectedFiles.length > 0) {
     let filesHTML = "";
 
@@ -544,10 +471,10 @@ sendBtn.addEventListener("click", () => {
       `;
     });
 
-    addMessage(filesHTML, "user",  false, null, true); // ֆայլերը կավելանան որպես user-message
-    selectedFiles = [];            // մաքրում ենք զանգվածը
-    updatePreview();               // մաքրում ենք file-preview-container-ը
-    updateFileList();              // reset անում ենք input.files
+    addMessage(filesHTML, "user",  false, null, true);
+    selectedFiles = [];          
+    updatePreview();              
+    updateFileList();             
   }
 
   chatboxInput.value = "";
@@ -570,7 +497,6 @@ sendBtn.addEventListener("click", () => {
     <p>Leider kann ich diese Frage nicht direkt beantworten, aber einer unserer Berater wird sich in Kürze mit Ihnen in Verbindung setzen.</p>
   `;
     }
-    // addMessage(fullResponse, "bot");
     const newBotEl = addMessage(fullResponse, "bot");
 const element = document.querySelector('.new-bot-message');
           if (element) {
@@ -580,11 +506,9 @@ const element = document.querySelector('.new-bot-message');
 newBotEl.classList.add("new-bot-message");
 chatboxMessages.scrollTop = chatboxMessages.scrollHeight;
 
-console.log(chatboxMessages);
 
 
 chatState = "done";
-    // chatState = "done";
     
 
 
@@ -597,9 +521,7 @@ chatState = "done";
       }
 
 
-    // addMessage(fullResponse, "bot");
-    // const newBotEl = addMessage(fullResponse, "bot");
-const newBotEl = addMessage(fullResponse, "bot", false); // առանց անիմացիայի
+const newBotEl = addMessage(fullResponse, "bot", false); 
 
     const element = document.querySelector('.new-bot-message');
           if (element) {
@@ -611,8 +533,6 @@ chatboxMessages.scrollTop = chatboxMessages.scrollHeight;
 
 
 chatState = "done";
-    // chatState = "done";
-    
 
   }
 });
@@ -620,16 +540,14 @@ chatState = "done";
 const fileInput = document.getElementById("file-upload");
 const filePreviewContainer = document.getElementById("file-preview-container");
 
-// Պահում ենք ընտրված ֆայլերը
 let selectedFiles = [];
 
 fileInput.addEventListener("change", () => {
-  const newFile = fileInput.files[0]; // օգտատերը ամեն անգամ 1 ֆայլ է ընտրում
+  const newFile = fileInput.files[0]; 
   if (!newFile) return;
 
-  // Եթե նույն անունով ֆայլ արդեն կա, չավելացնենք կրկնակի
   if (selectedFiles.some(f => f.name === newFile.name)) {
-    fileInput.value = ""; // reset input
+    fileInput.value = ""; 
     return;
   }
 
@@ -637,7 +555,7 @@ fileInput.addEventListener("change", () => {
 
   updatePreview();
   updateFileList();
-  fileInput.value = ""; // reset, որ հաջորդ ընտրության ժամանակ նորից trigger անի
+  fileInput.value = ""; 
 });
 
 function updatePreview() {
@@ -655,7 +573,6 @@ function updatePreview() {
     `;
     filePreviewContainer.appendChild(fileBlock);
 
-    // Ջնջելու event
     fileBlock.querySelector(".remove-file").addEventListener("click", () => {
       selectedFiles.splice(index, 1);
       updatePreview();
@@ -678,10 +595,8 @@ const root = document.documentElement;
 const logoLight = document.getElementById("logo-light");
 const logoDark = document.getElementById("logo-dark");
 
-// Սկսենք dark mode-ով
 toggle.checked = true;
 
-// Տալ dark mode արժեքները սկզբից
 root.style.setProperty('--bg-page', '#19212E');
 root.style.setProperty('--bg-chatbox', '#333942');
 root.style.setProperty('--bg-language-switch', '#2D343E');
@@ -699,7 +614,6 @@ logoDark.style.display = "inline";
 
 toggle.addEventListener("change", () => {
   if (toggle.checked) {
-    // DARK MODE
     root.style.setProperty('--bg-page', '#19212E');
     root.style.setProperty('--bg-chatbox', '#333942');
     root.style.setProperty('--bg-language-switch', '#2D343E');
@@ -714,7 +628,6 @@ toggle.addEventListener("change", () => {
     logoLight.style.display = "none";
     logoDark.style.display = "inline";
   } else {
-    // LIGHT MODE
     root.style.setProperty('--bg-page', '#F2F7FD');
     root.style.setProperty('--bg-chatbox', '#ffffffff');
     root.style.setProperty('--bg-language-switch', '#F9F9F9');

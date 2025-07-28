@@ -24,7 +24,7 @@ export const uiTexts = {
   },
   footer: {
     copyright: "© Copyright IAM hiring GmbH, 2025. Das Wort IAM hiring, sowie damit verbundene Logos und Illustrationen sind eingetragene Markenzeichen der IAM hiring GmbH. Die Symbole sind Originaldesigns, die in vielen Ländern geschützt sind. Alle Rechte vorbehalten.",
-    imprint: "Impressum",
-    privacy: "Datenschutz"
+    imprint: "Imprint",
+    privacy: "Data Protection"
   }
 };
