@@ -436,12 +436,13 @@ article.team-member {
 }
 .article-cont {
     width: 69%;
-    background-color: #E9EDEF;
+    background-color: var(--button-shadow);
     padding: 12px;
     border-radius: 12px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    
 }
 .contact a {
     display: inline-block;
