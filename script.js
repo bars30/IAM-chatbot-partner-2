@@ -163,6 +163,14 @@ menuButtons.forEach((btn) => {
   const input = document.querySelector(".send-message");
 
 
+  if (promptsSection.classList.contains("fade-out")) {
+  console.log("Ունի fade-out class");
+  chatboxMessages.classList.remove("display");
+} else {
+  console.log("Չունի fade-out class");
+  chatboxMessages.classList.add("display");
+}
+
 
 function restoreChatHistory() {
   const savedHistory = localStorage.getItem("chatHistory");
@@ -295,7 +303,7 @@ function getBotReply(prompt) {
     btn.addEventListener("click", () => {
       const selectedPrompt = btn.textContent;
 console.log("🙅🏻🙅🏻🙅🏻🙅🏻🙅🏻🙅🏻");
-
+chatboxMessages.classList.remove("display");
       promptButtons.forEach(b => b.disabled = true);
       promptsSection.classList.add("fade-out");
 
@@ -387,6 +395,7 @@ sendBtn.disabled = !true;
 
   questionsBtn.addEventListener("click", () => {
     const footerPrompts = document.querySelector(".quick-prompts-footer");
+    chatboxMessages.classList.remove("display");
     if (footerPrompts.style.display === "flex") {
       footerPrompts.classList.remove("fade-in");
       footerPrompts.classList.add("fade-out");
