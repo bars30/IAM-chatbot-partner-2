@@ -168,7 +168,14 @@ menuButtons.forEach((btn) => {
   chatboxMessages.classList.remove("display");
 } else {
   console.log("Չունի fade-out class");
+  console.log(localStorage.getItem('chatHistory'), 1);
+  console.log(!!localStorage.getItem('chatHistory'));
+  if (!!localStorage.getItem('chatHistory')) {
+    chatboxMessages.classList.remove("display");
+  } else {
+
   chatboxMessages.classList.add("display");
+  }
 }
 
 
