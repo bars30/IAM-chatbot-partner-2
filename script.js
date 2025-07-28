@@ -540,11 +540,20 @@ sendBtn.addEventListener("click", () => {
   
 
   if (chatState === "waitingUserQuestion") {
-    const fullResponse = `
+    let fullResponse = ``;
+    if (currentLang == "en") {
+      fullResponse = `
       <p>Thank you for your message!</p>
       <p>To assist you better, please share your <b>full name</b> and <b>email address</b>.</p>
       <p>Unfortunately, I can't answer this question directly, but one of our consultants will reach out to you shortly.</p>
     `;
+    } else if (currentLang == "de") {
+    fullResponse = `
+    <p>Vielen Dank für Ihre Nachricht!</p>
+    <p>Um Ihnen besser helfen zu können, teilen Sie uns bitte Ihren <b>vollständigen Namen</b> und Ihre <b>E-Mail-Adresse</b> mit.</p>
+    <p>Leider kann ich diese Frage nicht direkt beantworten, aber einer unserer Berater wird sich in Kürze mit Ihnen in Verbindung setzen.</p>
+  `;
+    }
     // addMessage(fullResponse, "bot");
     const newBotEl = addMessage(fullResponse, "bot");
 const element = document.querySelector('.new-bot-message');
@@ -564,9 +573,14 @@ chatState = "done";
 
 
   } else if (chatState === "done") {
-const fullResponse = `
-      <p>We've already received your info. Our consultant will contact you soon.</p>
-    `;
+    let fullResponse = ``;
+      if (currentLang == "en") {
+        fullResponse = `<p>We've already received your info. Our consultant will contact you soon.</p>`;
+      } else if (currentLang == "de") {
+        fullResponse = `<p>Wir haben Ihre Angaben bereits erhalten. Einer unserer Berater wird sich in Kürze mit Ihnen in Verbindung setzen.</p>`;
+      }
+
+
     // addMessage(fullResponse, "bot");
     // const newBotEl = addMessage(fullResponse, "bot");
 const newBotEl = addMessage(fullResponse, "bot", false); // առանց անիմացիայի
